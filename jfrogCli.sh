@@ -22,13 +22,14 @@ helpDesk()
    echo
    echo "Syntax: scriptTemplate [-p|-v|-a|-l|-d|-s|-c]"
    echo "options:"
-   echo "-p", "--ping","ping the system for health check."
-   echo "-v", "--version","Show server version information."
-   echo "-a","--add", "add user (prompts for username, email address, and password)."
-   echo "-d","--delete","delete user (prompts for username)."
-   echo "-l","--list","Returns a list of minimal repository details for all repositories of the specified type."
-   echo "-s","--storage","shows the server storage information."
-   echo "-c","--config","reconfig user configuration."
+   echo "-p", "ping","ping the system for health check."
+   echo "-v", "version","Show server version information."
+   echo "-a","add", "add user (prompts for username, email address, and password)."
+   echo "-d","delete","delete user (prompts for username)."
+   echo "-l","list","Returns a list of minimal repository details for all repositories of the specified type."
+   echo "-s","storage","shows the server storage information."
+   echo "-c","config","reconfig user configuration."
+   echo "-h","help","Display Help."
    echo
 }
 #this function is the cli 
@@ -78,6 +79,8 @@ cli()
       exit
       ;;  
     \? ) echo "Error: Invalid option"
+         echo
+         helpDesk
          exit
       ;;
   esac
