@@ -1,94 +1,80 @@
 #!/bin/bash
 
-#Global Verbs
-SERVER_ID=''
-URL=''
-USER=''
-PASS=''
 
-Help()
+
+# this function will config to jfrog artifactory , it will config to artifactory server base on server name and username and password , after it will create a token .
+config(){ 
+  echo "This is Reem API for Jfrog artifactory"
+  echo "Please enter server name :"
+  read server
+  echo "Please enter username :"
+  read username
+  echo "Please enter password :"
+  read password
+  jfrog config add artifactory-server --artifactory-url=$server --user=$username --password=$password --interactive=false # to config cli with jfrog artifactory.
+  jfrog rt  access-token-create
+}
+
+# Display Help.
+helpDesk()
 {
-   # Display Help
-   echo "This is Reem API for Jfrog artifactory"
+   echo "This is helpDesk Cli for Jfrog artifactory"
    echo
-   echo "Syntax: scriptTemplate [-p|-v|-a|-d|-s|-c]"
+   echo "Syntax: scriptTemplate [-p|-v|-a|-l|-d|-s|-c]"
    echo "options:"
    echo "-p", "--ping","ping the system for health check."
    echo "-v", "--version","Show server version information."
    echo "-a","--add", "add user (prompts for username, email address, and password)."
+   echo "-d","--delete","delete user (prompts for username)."
    echo "-l","--list","Returns a list of minimal repository details for all repositories of the specified type."
    echo "-s","--storage","shows the server storage information."
    echo "-c","--config","reconfig user configuration."
    echo
 }
-if [ -z "$1" ]
-  then
-    echo "No argument supplied help menu will pop up for instructions:"
-    echo
-    Help 
-fi
-
-
-
-
-
-while getopts ":pvaudlsch" opt; do
+#this function is the cli 
+cli()
+{
+  while getopts ":pvadlsch" opt; do # get the argument from the command .
   case ${opt} in
     p ) 
       jfrog rt ping 
       # jfrog rt curl /api/system/ping  ## we can also do that.
       ;;
     v ) 
-      jfrog rt curl /api/system/version
+      jfrog rt curl /api/system/version  # Show server version information
       ;;
       d )
-      echo "enter the user you want to Delete :"
+      echo "Enter the user you want to delete :"
       read Deluser 
-      jfrog rt curl -X DELETE /api/security/users/$Deluser
-      ;;
-    u ) 
-      echo "enter the Repository Key(name) you want to Update :"
-      read rk
-      echo "enter the new Repository Key(name) you want to be update :"
-      read nrk
-      jfrog rt curl -X POST \
-      /api/repositories/$rk \
-      -H 'Accept: application/json' \
-      -H 'Content-Type: application/json' \
-      -d '{
-      "key" : "a2z2q2",
-      "rclass" : "local",
-      "packageType": "pypi"
-    }'
+      jfrog rt curl -X DELETE /api/security/users/$Deluser # delete the specific user.
       ;;
     a )
-      echo "please enter  username :"
+      echo "Please enter  username :"
       read username
-      echo "please enter  email:"
+      echo "Please enter email address :"
       read email
-      echo "please enter password:"
+      echo "Please enter password :"
       read pw
-      jo -p username=$username email=$email password=$pw > user.json
-      jfrog rt curl -X PUT -H "Content-Type: application/json" -H 'Accept: application/json' -d '{"username":"'$username'","email":"'$email'","password":"'$pw'"}'  /api/security/users/$username 
-      jfrog rt curl -X PUT -H "Content-Type: application/json" -H 'Accept: application/json' -d 
+      jo -p username=$username email=$email password=$pw > user.json # create a json file
+      jfrog rt curl -X PUT -H "Content-Type: application/json" -H 'Accept: application/json' -d @user.json /api/security/users/$username # add user we user json file to send the information.
     ;;
     l )
-      jfrog rt curl /api/repositories
+      jfrog rt curl /api/repositories #Returns a list of minimal repository details for all repositories of the specified type.
       ;;
     c ) 
-      echo "server :"
+      echo "Please enter server name :"
       read server
-      echo "username:"
+      echo "Please enter username :"
       read username
-      echo "password:"
+      echo "Please enter password :"
       read password
-      jfrog config add artifactory-server --artifactory-url=$server --user=$username --password=$password --interactive=false
+      jfrog config add artifactory-server --artifactory-url=$server --user=$username --password=$password --interactive=false # to config cli with jfrog artifactory.
     ;;
     s )
-      jfrog rt curl /api/storageinfo
+      jfrog rt curl /api/storageinfo #shows the server storage information.
       ;;  
     h ) 
-      Help
+      helpDesk
       exit
       ;;  
     \? ) echo "Error: Invalid option"
@@ -96,4 +82,22 @@ while getopts ":pvaudlsch" opt; do
       ;;
   esac
 done
+}
+
+
+#config # config to jfrog artifactory.
+while true 
+do
+if [ -z "$1" ] # check if any argument enter if not it will show the menu options.
+  then
+    echo "No argument supplied help menu will pop up for instructions:"
+    echo
+    helpDesk
+    exit 
+fi
+cli $1
+done
+
+
+
 
