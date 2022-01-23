@@ -17,7 +17,10 @@ Steps:
    brew install jo
 4. Done!
 
-Then make yourself familiar with available cli options by running: -help
+Then make yourself familiar with available cli options by running:   ./jfrog_cli
+we have 2 files ,
+Interactive Cli is "jfrog_cli"
+non Interactive Cli run ./jfrogCli with one of those "[-p|-v|-a|-l|-d|-s|-c]"
 
 ## To do
 Please write a command line interface in Python or Bash to manage an Artifactory SaaS instance via its API. You can register one for free here : https://jfrog.com/start-free/#saas .

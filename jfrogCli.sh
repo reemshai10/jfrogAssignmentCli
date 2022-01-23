@@ -32,10 +32,17 @@ helpDesk()
    echo "-h","help","Display Help."
    echo
 }
-#this function is the cli 
-cli()
-{
-  while getopts ":pvadlsch" opt; do # get the argument from the command .
+
+
+config # to config in the first time with jfrog artifactory server.
+if [ -z "$1" ] # check if any argument enter if not it will show the menu options.
+  then
+    echo "No argument supplied help menu will pop up for instructions:"
+    echo
+    helpDesk
+    exit 
+fi    
+while getopts ":pvadlsch" opt; do # get the argument from the command .
   case ${opt} in
     p ) 
       jfrog rt ping 
@@ -85,21 +92,8 @@ cli()
       ;;
   esac
 done
-}
 
 
-#config # config to jfrog artifactory.
-while true 
-do
-if [ -z "$1" ] # check if any argument enter if not it will show the menu options.
-  then
-    echo "No argument supplied help menu will pop up for instructions:"
-    echo
-    helpDesk
-    exit 
-fi
-cli $1
-done
 
 
 
