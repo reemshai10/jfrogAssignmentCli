@@ -41,8 +41,8 @@ helpDesk()
 
 config # call to function to config to jfrog artifactory server
 helpDesk # show the cli menu
-#echo "You need to chhose option 1-8 :"
-PS3='You need to chhose option 1-8 : ' # to select the option 
+#echo "You need to chhose option 1-13 :"
+PS3='You need to chhose option 1-13 : ' # to select the option 
 select=("ping" "version" "delete" "add" "list" "storage" "config" "create" "delete repository" "upload" "download" "help" "quit")
 select choose in "${select[@]}"; do # run over and over untill the input is the quit
     case $choose in
