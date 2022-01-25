@@ -16,7 +16,7 @@ Steps:
 3. Install
    brew install jo
 
-4. brew install jq.
+4. brew install jq
 
 5. Done!
 
