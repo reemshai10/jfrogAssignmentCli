@@ -75,3 +75,7 @@ Please write a command line interface in Python or Bash to manage an Artifactory
 - Create User - Done
 - Delete User - Done
 - Get Storage Info - Done
+- Create Repository - Done
+- delete repository - Done
+- upload data to repository - Done
+- download data from repository - Done

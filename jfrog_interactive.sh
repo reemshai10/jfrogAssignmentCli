@@ -32,8 +32,10 @@ helpDesk()
    echo "6","storage","shows the server storage information."
    echo "7","config","reconfig user configuration (if you want to config diffrent server)."
    echo "8","create repository","Creates a new repository in Artifactory"
-   echo "9","update repository","Updates an existing repository "
-   echo "10","quit","Quit the Cli"
+   echo "9","delete repository repository","delete an existing repository "
+   echo "10","upload data to local repository."
+   echo "11","download data from local repository."
+   echo "12","quit","Quit the Cli"
    echo
 }
 
@@ -43,7 +45,7 @@ helpDesk()
 helpDesk # show the cli menu
 #echo "You need to chhose option 1-8 :"
 PS3='You need to chhose option 1-8 : ' # to select the option 
-select=("ping" "version" "delete" "add" "list" "storage" "config" "create" "update" "quit")
+select=("ping" "version" "delete" "add" "list" "storage" "config" "create" "delete repository" "upload" "download" "quit")
 select choose in "${select[@]}"; do # run over and over untill the input is the quit
     case $choose in
         "ping") 
@@ -92,10 +94,28 @@ select choose in "${select[@]}"; do # run over and over untill the input is the 
             mv repository-config.json temp.json  
             jq -r '.key |= "'$key'"' temp.json > repository-config.json
             rm temp.json
+            cp repository-config.json repository-config-update.json
             jfrog rt curl -X PUT -H "Content-type:application/vnd.org.jfrog.artifactory.repositories.LocalRepositoryConfiguration+json" -d @repository-config.json /api/repositories/$key 
             ;;
-        "update")
-            ;;    
+        "delete repository")
+              echo "Insert the repository key you want to delete :"
+              read key
+              jfrog rt curl -X DELETE /api/repositories/$key   
+              ;;
+        "upload")
+              echo "Insert the repository key  :"
+              read key
+              echo "Insert the file name  :"
+              read file
+              jfrog rt u $file $key   
+              ;;
+        "download")
+              echo "Insert the repository key  :"
+              read key
+              echo "Insert the file name  :"
+              read file
+              jfrog rt dl $key/$file    
+              ;;             
         "quit")
             echo "User requested exit" # the exit the CLI 
             exit
