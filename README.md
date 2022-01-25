@@ -7,13 +7,14 @@ to run this script your need to download jo and jq .
 This script runs on mac dependencies
 
 use the terminal command line.
+
+1. Launch Terminal and click enter.
+
+2. brew install jfrog-cli
+
 About abcde : JSON output from a shell!
 More Information: https://github.com/jpmens/jo
 Steps:
-
-1. brew install jfrog-cli
-
-2. Launch Terminal by pressing command+space, type terminal and hit Enter key.
 
 3. Run
    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null
