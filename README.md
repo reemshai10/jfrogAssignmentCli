@@ -17,10 +17,11 @@ Steps:
    brew install jo
 4. Done!
 
-Then make yourself familiar with available cli options by running:   ./jfrog_cli
-we have 2 files ,
-Interactive Cli is "jfrog_cli"
-non Interactive Cli run ./jfrogCli with one of those "[-p|-v|-a|-l|-d|-s|-c]"
+Then make yourself familiar with available cli options by running:   ./jfrog_interactive.sh
+Interactive Cli is "jfrog_interactive.sh"
+just run the bash scirpt, after config your server , and use the cli .
+if any time your want to see the cli menu just command empty enter . 
+
 
 ## To do
 Please write a command line interface in Python or Bash to manage an Artifactory SaaS instance via its API. You can register one for free here : https://jfrog.com/start-free/#saas .
@@ -28,14 +29,23 @@ Please write a command line interface in Python or Bash to manage an Artifactory
 
 - Features - done 6.
   Please implement at least five of the following APIs, with at least one example of each HTTP verb:
+
   ● System Ping
+
   ● System Version
+
   ● Create User
+
   ● Delete User
+
   ● Get Storage Info
+
   ● Create Repository
+
   ● Update repository
+
   ● List repositories
+  
 - Authenticate - done
   - Run the APIs against Artifactory with a token, but base the CLI login on user/password.
   - Provide us with a user+password for initial usage of the CLI wth your instance.
