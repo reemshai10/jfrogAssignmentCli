@@ -3,22 +3,26 @@ CLI for [JFrog Artifactory](https://www.jfrog.com/confluence/display/CLI/JFrog+C
 
 ## Setup
 to run this script your need to download jo and jq .
-we use mac.
+
+This script runs on mac dependencies
 
 use the terminal command line.
 About abcde : JSON output from a shell!
 More Information: https://github.com/jpmens/jo
 Steps:
 
-1. Launch Terminal by pressing command+space, type terminal and hit Enter key.
-2. Run
+1. brew install jfrog-cli
+
+2. Launch Terminal by pressing command+space, type terminal and hit Enter key.
+
+3. Run
    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null
-3. Install
+4. Install
    brew install jo
 
-4. brew install jq
+5. brew install jq
 
-5. Done!
+6. Done!
 
 Then make yourself familiar with available cli options by running:   ./jfrog_interactive.sh
 
@@ -79,3 +83,8 @@ Please write a command line interface in Python or Bash to manage an Artifactory
 - delete repository - Done
 - upload data to repository - Done
 - download data from repository - Done
+
+
+JFROG CLI CHEAT SHEET
+
+https://media.jfrog.com/wp-content/uploads/2021/03/30185137/JFrogCLICheatSheet.pdf
