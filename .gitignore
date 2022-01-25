@@ -1,3 +1,4 @@
 *.json
 user.json
-rep.json
+repository-config.json
+rep1.json
