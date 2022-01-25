@@ -27,9 +27,14 @@ Steps:
 
 Then make yourself familiar with available cli options by running:   ./jfrog_interactive.sh
 
-just run the bash scirpt, after config your server , and use the cli .
+just run the bash scirpt, the first thing you need is the config to jfrog artifactory server, you need to enter server url , username, password  .
+the scrpit also generate accsess-token.
+after you get a output of the accsess-key is mean you success to config.
+you will see the menu of the cli, and you able to start use it.
+
 
 if any time your want to see the cli menu just command empty enter . 
+Or run number in the cli. 
 
 
 ## To do
