@@ -2,7 +2,7 @@
 CLI for [JFrog Artifactory](https://www.jfrog.com/confluence/display/CLI/JFrog+CLI)
 
 ## Setup
-to run this script your need to download jo .
+to run this script your need to download jo and jq .
 we use mac.
 
 use the terminal command line.
@@ -15,11 +15,15 @@ Steps:
    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null
 3. Install
    brew install jo
-4. Done!
+
+4. brew install jq.
+
+5. Done!
 
 Then make yourself familiar with available cli options by running:   ./jfrog_interactive.sh
-Interactive Cli is "jfrog_interactive.sh"
+
 just run the bash scirpt, after config your server , and use the cli .
+
 if any time your want to see the cli menu just command empty enter . 
 
 
@@ -63,7 +67,7 @@ Please write a command line interface in Python or Bash to manage an Artifactory
 
   ● Please write documentation of the sources used, as well of the decisions made during the
     assignment.
-    
+
   ● All code should be hosted in a public git repository.
 - Save token - Done
 - System Ping - Done
